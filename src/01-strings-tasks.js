@@ -208,8 +208,23 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  function drawLine(first, fill, last) {
+    let str = '';
+    for (let i = 0; i < width - 2; i += 1) {
+      str += fill;
+    }
+    return `${first}${str}${last}\n`;
+  }
+
+  const first = drawLine('┌', '─', '┐');
+  const last = drawLine('└', '─', '┘');
+  let fill = '';
+  for (let i = 0; i < height - 2; i += 1) {
+    fill += drawLine('│', ' ', '│');
+  }
+
+  return first + fill + last;
 }
 
 
